@@ -17,7 +17,7 @@ Visual Studio Code
 # Using the App
 In your local terminal:
 Clone the repository by running:
-# git@github.com:Ron-Maina/The_Museum.git
+# git@github.com:leroykariuki/the-museum.git
 # Navigate into the project folder:
  cd The_Museum
 # Open the project files by running
