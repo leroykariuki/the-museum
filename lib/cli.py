@@ -105,3 +105,34 @@ while True:
                 session.add(new_artwork)
                 session.commit()
 
+            existing_artist = session.query(Artists).order_by(Artists.id.desc()).first()
+            if selected == "1":
+                def new_artists():
+                    rating = click.prompt("\nEnter your rating: ", type=int)
+                    if rating < 3:
+                        click.echo("CANNOT BE APPROVED! RATING MUST BE HIGHER THAN 3!")
+                        display_museums()
+
+                    elif 3 <= rating <= 5:
+                        first_name = click.prompt("\nEnter your first name: ")
+                        last_name = click.prompt("\nEnter your last name: ")
+                        
+                        new_artist = Artists(
+                            first_name = first_name,
+                            last_name = last_name,
+                            rating = rating
+                        )
+                        session.add(new_artist)
+                        session.commit()
+
+                        new_artwork()
+                        
+                        new_data = session.query(Artworks).order_by(Artworks.id.desc()).first()
+                        data = museum_artist.insert().values(museum_id = new_data.museum_id, artists_id = new_data.artist_id)
+                        session.execute(data)
+                        session.commit()
+                        click.echo("APPROVED!")
+                    append(new_artists)
+                new_artists()
+            
+
