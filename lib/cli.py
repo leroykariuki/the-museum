@@ -81,3 +81,27 @@ while True:
                 )
         
         elif choice == 2:
+
+    def menu_2():
+                click.echo("\nAre you: ")
+                for i, selection in enumerate(["New Artist", "Existing Artist"], 1):
+                    click.echo(f"{i}. {selection}")
+                append(menu_2)
+            menu_2()
+            
+            selected = click.prompt("\nSelect: ")
+            def new_artwork():
+                art_name = click.prompt("\nEnter Artwork Name: ")
+                date_of_artwork = click.prompt("\nEnter Date of Artwork: ")
+                date_of_exhibition = click.prompt("\nEnter Exhibition Date: ")
+
+                new_artwork = Artworks(
+                    name = art_name,
+                    date_of_artwork = date_of_artwork,
+                    date_of_exhibition = date_of_exhibition,
+                    museum_id = museum_choice,
+                    artist_id = existing_artist.id
+                )
+                session.add(new_artwork)
+                session.commit()
+
