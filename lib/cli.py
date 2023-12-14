@@ -44,3 +44,40 @@ while True:
     
 
         museum_choice = click.prompt("\nSelect Museum", type=int)
+
+        def menu_1():
+            click.echo("\nWould you like to:")
+            for i, option in enumerate(["Navigate through Museum", "Submit Art for Approval"], 1):
+                click.echo(f"{i}. {option}")
+            append(menu_1)
+        menu_1()    
+
+        choice = click.prompt("\nSelect choice", type=int)
+        artwork_dict = {}
+        list_artworks = session.query(Artworks).filter(Artworks.museum_id == museum_choice).all()
+
+        if choice == 1:
+            def display_art():
+                text = f"ON DISPLAY in {museum_dict[museum_choice]}"
+                click.echo(text.center(100))
+                session.close()
+                for i, artwork in enumerate(list_artworks, 1):
+                    click.echo(f"{i}. {artwork.name}")
+                    artwork_dict[i] = artwork.name
+                append(display_art)
+            display_art()
+
+            artwork_choice = click.prompt("\nSelect Artwork", type=int)
+            selected = session.query(Artworks).filter_by(name=artwork_dict[artwork_choice]).first()
+            
+            click.echo(
+                f"""
+                Name: {artwork_dict[artwork_choice]}.
+                Artist: {(selected.artist).first_name} {(selected.artist).last_name}.
+                Artist Rating: {(selected.artist).rating}
+                Date of Artwork:  {selected.date_of_artwork}.
+                Date of Exhibition:  {selected.date_of_exhibition}.
+                """
+                )
+        
+        elif choice == 2:
