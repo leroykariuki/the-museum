@@ -134,5 +134,38 @@ while True:
                         click.echo("APPROVED!")
                     append(new_artists)
                 new_artists()
+
+            elif selected == "2":
+                def update_artist():
+                    first_name = click.prompt("\nEnter your first name: ")
+                    last_name = click.prompt("\nEnter your last name: ")
+
+                    existing_artist = session.query(Artists).filter_by(first_name = first_name, last_name = last_name).first()
+                    if existing_artist == None:
+                        click.echo("USER NOT FOUND")
+                    else:
+                        new_artwork()
+                        click.echo("APPROVED!")
+                    append(update_artist)
+                update_artist()
+
+            else:
+                click.echo("INVALID INPUT")
+
+        final = click.prompt("\nType (q) to exit")
+        if final == "q":
+            click.echo("Exiting the Program!") 
+            sys.exit()
+        
+        else:
+            click.echo("INVALID INPUT")
+
+
+                    
+
+
+    if _name_ == '_main_':
+        cli()
+
             
 
