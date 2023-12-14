@@ -44,3 +44,13 @@ class Artists(Base):
 
     # create one to many relationship with Artists
     museums = relationship('Museums', secondary=museum_artist, back_populates='artists')
+
+class Artworks(Base):
+    _tablename_ = 'artworks'
+
+    id = Column(Integer(), primary_key=True)
+    name = Column(String(), index=True)
+    date_of_artwork = Column(Integer())
+    date_of_exhibition = Column(Integer())
+    museum_id = Column(Integer(), ForeignKey('museums.id'))
+    artist_id = Column(Integer(), ForeignKey('artists.id'))
