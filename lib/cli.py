@@ -81,8 +81,7 @@ while True:
                 )
         
         elif choice == 2:
-
-    def menu_2():
+            def menu_2():
                 click.echo("\nAre you: ")
                 for i, selection in enumerate(["New Artist", "Existing Artist"], 1):
                     click.echo(f"{i}. {selection}")
@@ -104,6 +103,7 @@ while True:
                 )
                 session.add(new_artwork)
                 session.commit()
+
 
             existing_artist = session.query(Artists).order_by(Artists.id.desc()).first()
             if selected == "1":
@@ -134,7 +134,7 @@ while True:
                         click.echo("APPROVED!")
                     append(new_artists)
                 new_artists()
-
+            
             elif selected == "2":
                 def update_artist():
                     first_name = click.prompt("\nEnter your first name: ")
@@ -164,8 +164,5 @@ while True:
                     
 
 
-    if _name_ == '_main_':
+    if __name__ == '__main__':
         cli()
-
-            
-
