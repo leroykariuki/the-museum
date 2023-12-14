@@ -32,7 +32,7 @@ if _name_ == "_main_":
         session.commit()
     print("DONE SEEDING MUSEUMS!")
 
-       print("SEEDING ARTISTS........")
+    print("SEEDING ARTISTS........")
     artists_list = []
     for i in range(20):
         artist = Artists(
