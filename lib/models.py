@@ -29,3 +29,18 @@ class Museums(Base):
 
     # create one to many relationship with Artists
     artists = relationship('Artists', secondary=museum_artist, back_populates='museums')
+
+
+class Artists(Base):
+    _tablename_ = 'artists'
+
+    id = Column(Integer(), primary_key=True)
+    first_name = Column(String())
+    last_name = Column(String())
+    rating = Column(Integer())
+
+    #One to many relationship with Artworks
+    artworks = relationship('Artworks', backref=backref('artist'))
+
+    # create one to many relationship with Artists
+    museums = relationship('Museums', secondary=museum_artist, back_populates='artists')
